@@ -1,136 +1,153 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SparkPulse — Your Ultimate Entertainment Hub</title>
+  <title>SparkPulse — Your Ultimate Entertainment & Social Hub (USA & Worldwide)</title>
+  <meta name="description" content="Discover exclusive live streams, trending entertainment, and connect with verified members across the USA & Worldwide — instant access, zero waiting." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            void: '#070510',
+            midnight: '#120826',
+            neonPink: '#FF007F',
+            neonViolet: '#8A2BE2',
+            neonCyan: '#00F0FF',
+          },
+          animation: {
+            'float-slow': 'float 6s ease-in-out infinite',
+            'float-delayed': 'float 7s ease-in-out 2s infinite',
+            'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+            'spin-slow': 'spin 18s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+              '50%': { transform: 'translateY(-14px) rotate(2deg)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.75', transform: 'scale(1)' },
+              '50%': { opacity: '1', transform: 'scale(1.04)' },
+            }
+          }
+        }
+      }
+    };
+  </script>
+
   <style>
-    :root {
-      --neon-pink: #ff1e7a;
-      --neon-purple: #8b2cf5;
-      --neon-cyan: #00e5ff;
-      --bg-dark: #070514;
-    }
-
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
+    /* Custom Cyberpunk & Glassmorphism Styles */
     body {
-      background-color: var(--bg-dark);
+      background-color: #070510;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(255, 0, 127, 0.16) 0%, transparent 42%),
+        radial-gradient(circle at 85% 20%, rgba(138, 43, 226, 0.22) 0%, transparent 45%),
+        radial-gradient(circle at 50% 75%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #070510 0%, #120826 55%, #070510 100%);
       color: #ffffff;
-      font-family: 'Plus Jakarta Sans', sans-serif;
       overflow-x: hidden;
     }
 
-    h1, h2, h3, .font-display {
-      font-family: 'Outfit', sans-serif;
-    }
-
-    /* Animated Ambient Orbs & Skyline Backdrop */
-    .hero-bg {
-      background:
-        radial-gradient(circle at 75% 30%, rgba(255, 30, 122, 0.28) 0%, transparent 45%),
-        radial-gradient(circle at 20% 25%, rgba(139, 44, 245, 0.25) 0%, transparent 50%),
-        radial-gradient(circle at 50% 85%, rgba(0, 229, 255, 0.14) 0%, transparent 45%),
-        linear-gradient(180deg, #09061a 0%, #12092b 48%, #070514 100%);
-    }
-
-    .grid-overlay {
-      background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.85), transparent 85%);
-    }
-
-    /* Glassmorphism Cards */
-    .glass-panel {
-      background: rgba(18, 14, 41, 0.65);
+    /* Glass Panels */
+    .glass-card {
+      background: rgba(18, 12, 36, 0.62);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .glass-card-hover {
-      transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    .glass-card:hover {
+      border-color: rgba(255, 0, 127, 0.45);
+      box-shadow: 0 16px 48px -8px rgba(255, 0, 127, 0.25), inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+      transform: translateY(-4px);
     }
 
-    .glass-card-hover:hover {
-      transform: translateY(-6px);
-      border-color: rgba(255, 30, 122, 0.55);
-      box-shadow: 0 18px 40px rgba(255, 30, 122, 0.2), 0 0 25px rgba(139, 44, 245, 0.2);
+    /* Neon Text & Buttons */
+    .text-gradient-neon {
+      background: linear-gradient(135deg, #FF007F 0%, #FF4DA6 45%, #A855F7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    /* Neon Gradient Text & Buttons */
-    .text-neon-pink {
-      background: linear-gradient(95deg, #ff2a85 0%, #ff5ca8 50%, #c84bff 100%);
+    .text-gradient-cyan {
+      background: linear-gradient(135deg, #00F0FF 0%, #A855F7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .btn-neon-primary {
-      background: linear-gradient(90deg, #ff1675 0%, #e11d88 50%, #9b26f6 100%);
-      box-shadow: 0 0 28px rgba(255, 22, 117, 0.55), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+      background: linear-gradient(135deg, #FF007F 0%, #D9006C 50%, #9333EA 100%);
+      box-shadow: 0 0 24px rgba(255, 0, 127, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.35);
       transition: all 0.3s ease;
     }
 
     .btn-neon-primary:hover {
+      box-shadow: 0 0 36px rgba(255, 0, 127, 0.8), 0 0 60px rgba(147, 51, 234, 0.45);
       transform: translateY(-2px) scale(1.02);
-      box-shadow: 0 0 40px rgba(255, 22, 117, 0.8), 0 0 18px rgba(155, 38, 246, 0.6);
     }
 
     .btn-neon-secondary {
-      background: rgba(20, 16, 48, 0.75);
-      border: 1.5px solid rgba(168, 85, 247, 0.55);
-      box-shadow: 0 0 20px rgba(139, 44, 245, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(168, 85, 247, 0.45);
+      box-shadow: 0 0 20px rgba(138, 43, 226, 0.2);
       transition: all 0.3s ease;
     }
 
     .btn-neon-secondary:hover {
-      background: rgba(139, 44, 245, 0.22);
-      border-color: #ff2a85;
+      background: rgba(168, 85, 247, 0.16);
+      border-color: #FF007F;
+      box-shadow: 0 0 28px rgba(255, 0, 127, 0.35);
       transform: translateY(-2px);
-      box-shadow: 0 0 28px rgba(255, 42, 133, 0.35);
     }
 
-    /* 3D Floating Phone Mockup */
-    @keyframes floatPhone {
-      0%, 100% { transform: rotate(-5deg) translateY(0px); }
-      50% { transform: rotate(-3.5deg) translateY(-12px); }
+    /* 3D Smartphone Frame */
+    .phone-mockup-wrapper {
+      perspective: 1200px;
     }
 
-    @keyframes floatHeart {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-10px) scale(1.08); }
+    .phone-frame {
+      transform: rotateY(-8deg) rotateX(4deg);
+      transform-style: preserve-3d;
+      box-shadow:
+        -18px 24px 60px rgba(0, 0, 0, 0.85),
+        0 0 45px rgba(255, 0, 127, 0.35),
+        0 0 80px rgba(138, 43, 226, 0.3),
+        inset 0 0 0 2px rgba(255, 255, 255, 0.22);
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    @keyframes pulseRing {
-      0% { transform: scale(0.95); opacity: 0.75; }
-      70% { transform: scale(1.35); opacity: 0; }
-      100% { transform: scale(1.35); opacity: 0; }
+    .phone-frame:hover {
+      transform: rotateY(-2deg) rotateX(1deg) scale(1.015);
     }
 
-    .phone-float {
-      animation: floatPhone 6s ease-in-out infinite;
-    }
-
-    .heart-float-1 { animation: floatHeart 4.2s ease-in-out infinite; }
-    .heart-float-2 { animation: floatHeart 5.1s ease-in-out infinite 0.8s; }
-    .heart-float-3 { animation: floatHeart 4.7s ease-in-out infinite 1.4s; }
-
-    .live-dot::before {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 9999px;
-      background: #10b981;
-      animation: pulseRing 1.8s infinite;
+    @media (max-width: 1024px) {
+      .phone-frame {
+        transform: rotateY(0deg) rotateX(0deg);
+      }
+      .phone-frame:hover {
+        transform: scale(1.01);
+      }
     }
 
     /* Custom Scrollbar */
@@ -138,543 +155,1011 @@
       width: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #070514;
+      background: #070510;
     }
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #ff1e7a, #8b2cf5);
-      border-radius: 999px;
+      background: linear-gradient(180deg, #FF007F, #8A2BE2);
+      border-radius: 9999px;
+    }
+
+    /* Ambient Floating Particles Canvas */
+    #particle-canvas {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
     }
   </style>
 </head>
-<body class="antialiased selection:bg-pink-500 selection:text-white">
+<body class="antialiased selection:bg-neonPink selection:text-white relative">
 
-  <!-- Top Navigation Bar -->
-  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#070514]/80 backdrop-blur-xl">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3.5 flex items-center justify-between gap-4">
+  <!-- Ambient Floating Neon Particles -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- ==================== STICKY GLASS NAVBAR ==================== -->
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#070510]/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      
       <!-- Brand Logo -->
-      <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2.5 group shrink-0">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#ff1e7a] to-[#9b26f6] flex items-center justify-center shadow-[0_0_20px_rgba(255,30,122,0.65)] group-hover:scale-105 transition">
-          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M13.5 2C13.5 2 14.2 5.3 11.7 7.8C9.8 9.7 7 10.6 7 14.3C7 17.9 9.9 21 13.6 21C17.6 21 20.5 17.8 20.5 13.7C20.5 9.1 16.9 5.3 13.5 2ZM13.3 18.2C11.5 18.2 10.1 16.8 10.1 15C10.1 13.4 11.3 12.4 12.6 11.4C13.5 10.7 14.2 9.7 14.5 8.7C16.1 10.2 17.3 12.1 17.3 14.2C17.3 16.5 15.5 18.2 13.3 18.2Z"/>
-          </svg>
+      <a href="#top" class="flex items-center gap-2.5 group shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-neonPink via-purple-600 to-indigo-600 flex items-center justify-center shadow-[0_0_20px_rgba(255,0,127,0.65)] group-hover:scale-105 transition-transform">
+          <i data-lucide="flame" class="w-6 h-6 text-white fill-white"></i>
         </div>
-        <span class="font-display text-xl sm:text-2xl font-extrabold tracking-tight">
-          Spark<span class="text-[#ff2a85]">Pulse</span>
+        <span class="font-display font-extrabold text-2xl tracking-tight text-white">
+          Spark<span class="text-gradient-neon">Pulse</span>
         </span>
       </a>
 
-      <!-- Navigation Links -->
-      <nav class="hidden md:flex items-center gap-1.5 bg-white/[0.04] p-1.5 rounded-full border border-white/10">
-        <a href="#top" class="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#ff1e7a] to-[#d91b7a] text-white text-sm font-semibold shadow-[0_0_15px_rgba(255,30,122,0.5)]">
-          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
-          Home
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-1.5 bg-white/[0.04] p-1.5 rounded-full border border-white/10">
+        <a href="#top" class="px-4 py-1.5 rounded-full text-sm font-semibold bg-gradient-to-r from-neonPink to-purple-600 text-white shadow-[0_0_15px_rgba(255,0,127,0.5)] flex items-center gap-1.5">
+          <i data-lucide="home" class="w-3.5 h-3.5"></i> Home
         </a>
-        <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition">Movies</a>
-        <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition">Series</a>
-        <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition">Shorts</a>
-        <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition flex items-center gap-1.5">
-          <span class="w-1.5 h-1.5 rounded-full bg-pink-500 animate-ping"></span>
-          Live TV
+        <a href="#trending" class="px-4 py-1.5 rounded-full text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition">Trending</a>
+        <a href="#live-profiles" class="px-4 py-1.5 rounded-full text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> Live Profiles
         </a>
-        <a href="#features" class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition">About</a>
+        <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" class="px-4 py-1.5 rounded-full text-sm font-medium text-amber-300 hover:text-amber-200 hover:bg-amber-500/10 transition flex items-center gap-1">
+          <i data-lucide="crown" class="w-3.5 h-3.5"></i> VIP Access
+        </a>
+        <a href="#reviews" class="px-4 py-1.5 rounded-full text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition">Reviews</a>
       </nav>
 
-      <!-- Search Bar + Mobile CTA -->
+      <!-- Search Bar + Region Switcher Badge -->
       <div class="flex items-center gap-3">
-        <form onsubmit="handleSearchRedirect(event)" class="hidden sm:flex items-center bg-[#120e29]/90 border border-white/15 focus-within:border-pink-500/70 rounded-full px-3.5 py-1.5 w-48 lg:w-60 transition">
-          <input id="navSearchInput" type="text" placeholder="Search movies, live..." class="bg-transparent text-xs text-white placeholder-slate-400 focus:outline-none w-full" />
-          <button type="submit" aria-label="Search" class="text-slate-400 hover:text-pink-400 transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 115 11a6 6 0 0112 0z"/></svg>
+        <!-- Interactive Search Input -->
+        <div class="relative hidden sm:block">
+          <input
+            id="header-search"
+            type="text"
+            placeholder="Search streams, creators..."
+            class="w-44 xl:w-60 pl-4 pr-9 py-2 rounded-full bg-white/[0.06] border border-white/15 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-neonPink focus:ring-2 focus:ring-neonPink/30 transition"
+          />
+          <button onclick="handleHeaderSearch()" aria-label="Search" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-neonPink transition">
+            <i data-lucide="search" class="w-4 h-4"></i>
           </button>
-        </form>
+        </div>
 
-        <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="md:hidden px-3.5 py-1.5 rounded-full btn-neon-primary text-xs font-bold">
-          Join Free
-        </a>
+        <!-- Region Switcher Badge -->
+        <button
+          id="nav-region-btn"
+          onclick="toggleNavRegion()"
+          title="Switch Server Region"
+          class="flex items-center gap-2 px-3.5 py-2 rounded-full bg-gradient-to-r from-purple-900/60 to-pink-900/50 border border-neonPink/40 hover:border-neonPink text-xs sm:text-sm font-semibold text-white shadow-[0_0_15px_rgba(255,0,127,0.25)] transition"
+        >
+          <span id="nav-region-flag">🇺🇸</span>
+          <span id="nav-region-label">USA</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-gray-200 hover:text-white">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
       </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-white/10 bg-[#0b0719]/95 backdrop-blur-2xl px-4 pt-3 pb-5 space-y-2">
+      <a href="#top" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl bg-neonPink/20 text-white font-semibold">Home</a>
+      <a href="#trending" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5">Trending Now</a>
+      <a href="#live-profiles" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-gray-300 hover:bg-white/5">Live Profiles</a>
+      <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" class="block px-4 py-2.5 rounded-xl text-amber-300 font-semibold hover:bg-amber-500/10">👑 Unlock VIP Access</a>
+      <a href="#region-select" onclick="toggleMobileMenu()" class="block px-4 py-2.5 rounded-xl text-cyan-300 hover:bg-white/5">Select Region (USA / Worldwide)</a>
     </div>
   </header>
 
-  <!-- Main Hero Section -->
-  <main id="top" class="relative hero-bg overflow-hidden">
-    <div class="absolute inset-0 grid-overlay pointer-events-none"></div>
-
-    <!-- Ambient Glow Blobs -->
-    <div class="absolute -top-24 -left-24 w-96 h-96 bg-purple-600/25 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="absolute top-16 right-0 w-[30rem] h-[30rem] bg-pink-600/25 rounded-full blur-[130px] pointer-events-none"></div>
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 lg:pt-16 lg:pb-24">
+  <!-- ==================== HERO SECTION (SPLIT LAYOUT) ==================== -->
+  <main id="top" class="relative z-10">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 lg:pt-16 lg:pb-24">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
-        <!-- Left Hero Content -->
-        <div class="lg:col-span-7 text-center lg:text-left space-y-6 z-10">
-          <!-- Eyebrow Badge -->
-          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.06] border border-pink-500/30 backdrop-blur-md">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
-            </span>
-            <span class="text-[11px] sm:text-xs font-bold tracking-[0.22em] text-pink-200 uppercase">
-              STREAM • WATCH • CONNECT • ENJOY
+        <!-- LEFT COLUMN: Value Proposition & High-Converting CTAs -->
+        <div class="lg:col-span-6 space-y-7 text-center lg:text-left">
+          <!-- Eyebrow Tagline -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/[0.06] border border-neonPink/40 shadow-[0_0_20px_rgba(255,0,127,0.2)]">
+            <span class="w-2 h-2 rounded-full bg-neonPink animate-ping"></span>
+            <span class="text-xs sm:text-sm font-bold tracking-[0.2em] uppercase text-pink-200">
+              STREAM &bull; CONNECT &bull; EXPERIENCE
             </span>
           </div>
 
           <!-- Main Headline -->
-          <h1 class="font-display text-5xl sm:text-6xl lg:text-[4.35rem] font-black leading-[1.04] tracking-tight">
-            <span class="block text-white">Spark<span class="text-neon-pink">Pulse</span></span>
-            <span class="block text-slate-200 font-extrabold text-4xl sm:text-5xl lg:text-[3.3rem] mt-1">
-              Your Ultimate <span class="text-neon-pink">Entertainment</span> Hub
+          <h1 class="font-display font-extrabold text-4xl sm:text-5xl xl:text-6xl leading-[1.12] tracking-tight">
+            Spark<span class="text-gradient-neon">Pulse</span> — Your Ultimate
+            <span class="block mt-1 bg-gradient-to-r from-white via-pink-100 to-purple-200 bg-clip-text text-transparent">
+              Entertainment &amp; <span class="text-gradient-neon">Social Hub</span>
             </span>
           </h1>
 
-          <!-- Subtitle -->
-          <p class="text-slate-300 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
-            Watch the latest blockbuster movies, trending series, viral shorts, and connect with live creators across the <strong class="text-white">USA & Worldwide</strong> — all in one ultra-fast hub, anytime, anywhere!
+          <!-- Subheadline -->
+          <p class="text-base sm:text-lg text-gray-300/95 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            Discover exclusive live streams, trending entertainment, and connect with verified members across the <strong class="text-white font-semibold">USA &amp; Worldwide</strong> — instant access, zero waiting.
           </p>
 
-          <!-- Primary CTA Buttons -->
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-            <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-full btn-neon-primary font-display font-bold text-base sm:text-lg text-white flex items-center justify-center gap-3 group">
-              <span class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                <svg class="w-3.5 h-3.5 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/></svg>
-              </span>
-              <span>Start Watching Free</span>
-              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+          <!-- Primary & Secondary CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-1">
+            <a
+              href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-neon-primary w-full sm:w-auto px-8 py-4 rounded-full font-display font-bold text-base sm:text-lg text-white flex items-center justify-center gap-2.5 group"
+            >
+              <i data-lucide="play" class="w-5 h-5 fill-white"></i>
+              <span>Start Watching / Join Free</span>
+              <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
             </a>
 
-            <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 rounded-full btn-neon-secondary font-display font-bold text-base sm:text-lg text-white flex items-center justify-center gap-2.5">
-              <svg class="w-5 h-5 text-pink-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-              <span>Download App / VIP</span>
+            <a
+              href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-neon-secondary w-full sm:w-auto px-7 py-4 rounded-full font-display font-bold text-base text-white flex items-center justify-center gap-2.5"
+            >
+              <i data-lucide="crown" class="w-5 h-5 text-amber-400"></i>
+              <span>Explore VIP Access</span>
             </a>
           </div>
 
-          <!-- Social Proof Row -->
-          <div class="pt-3 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+          <!-- Social Proof Strip -->
+          <div class="pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
             <div class="flex -space-x-3">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Member" class="w-10 h-10 rounded-full object-cover ring-2 ring-[#09061a]" />
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Member" class="w-10 h-10 rounded-full object-cover ring-2 ring-[#09061a]" />
-              <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80" alt="Member" class="w-10 h-10 rounded-full object-cover ring-2 ring-[#09061a]" />
-              <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" alt="Member" class="w-10 h-10 rounded-full object-cover ring-2 ring-[#09061a]" />
-              <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-600 to-purple-700 ring-2 ring-[#09061a] flex items-center justify-center text-[11px] font-bold">
-                10M+
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Member" class="w-11 h-11 rounded-full object-cover border-2 border-[#120826] ring-2 ring-neonPink/60" />
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Member" class="w-11 h-11 rounded-full object-cover border-2 border-[#120826] ring-2 ring-purple-500/60" />
+              <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=100&q=80" alt="Member" class="w-11 h-11 rounded-full object-cover border-2 border-[#120826] ring-2 ring-neonPink/60" />
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Member" class="w-11 h-11 rounded-full object-cover border-2 border-[#120826] ring-2 ring-cyan-400/60" />
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-neonPink to-purple-700 border-2 border-[#120826] flex items-center justify-center text-xs font-bold">
+                12M+
               </div>
             </div>
 
-            <div class="text-left">
-              <div class="flex items-center gap-1.5">
-                <div class="flex text-amber-400 text-sm">
-                  ★★★★★
-                </div>
-                <span class="font-bold text-white text-sm">4.9/5</span>
+            <div class="text-center sm:text-left">
+              <div class="flex items-center justify-center sm:justify-start gap-1 text-amber-400">
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                <span class="ml-1.5 text-sm font-bold text-white">4.9/5</span>
               </div>
-              <p class="text-xs text-slate-400">Trusted by <span class="text-slate-200 font-semibold">10M+ Users</span> in USA & Worldwide</p>
+              <p class="text-xs sm:text-sm text-gray-300">
+                Trusted by <span class="text-white font-semibold">12M+ Active Users</span> in USA &amp; Worldwide
+              </p>
             </div>
           </div>
         </div>
 
-        <!-- Right Interactive 3D Smartphone Showcase -->
-        <div class="lg:col-span-5 relative flex justify-center items-center z-10">
-          <!-- Neon Backdrop Aura -->
-          <div class="absolute w-72 h-72 sm:w-80 sm:h-80 rounded-full bg-gradient-to-tr from-[#ff1e7a]/40 via-[#8b2cf5]/35 to-[#00e5ff]/25 blur-2xl"></div>
+        <!-- RIGHT COLUMN: Interactive 3D Floating Smartphone Mockup -->
+        <div id="live-profiles" class="lg:col-span-6 relative flex justify-center items-center phone-mockup-wrapper">
+          
+          <!-- Ambient Glowing Halo & Neon Skyline Silhouette Behind Phone -->
+          <div class="absolute -inset-6 bg-gradient-to-tr from-neonPink/30 via-purple-600/30 to-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-          <!-- Floating Neon Hearts -->
-          <div class="heart-float-1 absolute -top-4 left-6 sm:left-12 z-20 w-11 h-11 rounded-2xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center shadow-[0_0_25px_rgba(255,30,122,0.8)] rotate-[-14deg]">
-            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+          <!-- Decorative Neon Skyline SVG Silhouette -->
+          <svg class="absolute bottom-2 w-full max-w-lg opacity-35 pointer-events-none text-purple-500" viewBox="0 0 600 180" fill="none">
+            <th d="M0 180V120H35V85H65V130H95V50H120V30H130V50H145V115H175V70H210V125H245V40H265V15H275V40H295V110H330V75H365V135H400V60H435V120H470V45H490V20H500V45H520V105H555V80H600V180H0Z" fill="url(#skylineGrad)" />
+            <del>
+                <samp stop-color="#FF007F" stop-opacity="0.7" />
+                <samp offset="1" stop-color="#120826" stop-opacity="0" />
+            </del>
+          </svg>
+
+          <!-- Floating Animated Heart & Spark Badges -->
+          <div class="animate-float-slow absolute -top-4 left-2 sm:left-10 z-20 w-12 h-12 rounded-2xl bg-gradient-to-br from-neonPink to-rose-600 flex items-center justify-center shadow-[0_0_25px_rgba(255,0,127,0.8)] border border-white/30">
+            <i data-lucide="heart" class="w-6 h-6 text-white fill-white"></i>
           </div>
 
-          <div class="heart-float-2 absolute top-24 -right-2 sm:right-4 z-20 w-10 h-10 rounded-full bg-gradient-to-br from-fuchsia-500 to-purple-600 flex items-center justify-center shadow-[0_0_22px_rgba(217,70,239,0.8)] rotate-[12deg]">
-            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"/></svg>
+          <div class="animate-float-delayed absolute top-24 -right-2 sm:right-6 z-20 px-3.5 py-2 rounded-2xl glass-card border-neonCyan/40 flex items-center gap-2 shadow-[0_0_25px_rgba(0,240,255,0.3)]">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="text-xs font-bold text-white">1.48M+ Online Now</span>
           </div>
 
-          <div class="heart-float-3 absolute bottom-28 -left-2 sm:left-4 z-20 px-3 py-1.5 rounded-full glass-panel border-pink-500/40 flex items-center gap-1.5 shadow-lg">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span class="text-[11px] font-bold text-white">USA & Global Active</span>
+          <div class="animate-float-slow absolute bottom-10 -left-2 sm:left-4 z-20 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-purple-900/90 to-pink-900/90 border border-neonPink/50 backdrop-blur-md shadow-[0_0_30px_rgba(255,0,127,0.5)]">
+            <p class="font-display font-extrabold text-sm text-white leading-tight">Find Your</p>
+            <p class="font-display font-extrabold text-base text-gradient-neon leading-tight">Perfect Match &amp; Stream!</p>
           </div>
 
-          <!-- 3D Tilted Smartphone Frame -->
-          <div class="phone-float relative w-[295px] sm:w-[315px] rounded-[42px] p-2.5 bg-gradient-to-b from-pink-400/60 via-purple-500/40 to-cyan-400/50 shadow-[0_25px_70px_rgba(0,0,0,0.85),0_0_45px_rgba(255,30,122,0.35)]">
-            <div class="bg-[#0b071d] rounded-[34px] overflow-hidden border border-white/10">
-              <!-- Phone Status & Browser Bar -->
-              <div class="px-4 pt-3 pb-2 bg-[#120c2c] border-b border-white/10">
-                <div class="flex items-center justify-between text-[10px] text-slate-400 mb-2">
-                  <span class="font-bold text-white">9:41</span>
-                  <div class="w-16 h-3.5 bg-black rounded-full"></div>
-                  <div class="flex items-center gap-1">
-                    <span>5G</span>
-                    <span class="w-3.5 h-2 rounded-sm bg-emerald-400 inline-block"></span>
+          <!-- 3D Smartphone Frame -->
+          <div class="phone-frame relative z-10 w-[335px] sm:w-[365px] rounded-[46px] bg-[#0c081a] p-3 border-[3px] border-white/20">
+            <!-- Top Speaker / Dynamic Island -->
+            <div class="w-28 h-6 bg-black rounded-full mx-auto mb-2.5 flex items-center justify-between px-3 border border-white/10">
+              <span class="w-2 h-2 rounded-full bg-indigo-500/80"></span>
+              <span class="w-10 h-1.5 rounded-full bg-white/15"></span>
+            </div>
+
+            <!-- Phone Inner Screen -->
+            <div class="rounded-[34px] bg-gradient-to-b from-[#160c2e] via-[#0e0720] to-[#080412] overflow-hidden border border-white/10">
+              
+              <!-- Phone App Top Bar -->
+              <div class="px-4 pt-3 pb-2.5 flex items-center justify-between border-b border-white/10">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-neonPink to-purple-600 flex items-center justify-center">
+                    <i data-lucide="flame" class="w-4 h-4 text-white fill-white"></i>
+                  </div>
+                  <div>
+                    <div class="font-display font-bold text-sm text-white leading-none">Spark<span class="text-neonPink">Pulse</span></div>
+                    <div class="text-[10px] text-emerald-400 font-medium mt-0.5 flex items-center gap-1">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Live Verified Feed
+                    </div>
                   </div>
                 </div>
-                <div class="flex items-center justify-between bg-black/50 rounded-full px-3 py-1 text-[10px] text-slate-300 border border-white/10">
-                  <span class="flex items-center gap-1 truncate">
-                    <svg class="w-2.5 h-2.5 text-emerald-400 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
-                    sparkpulse.live/usa-vip
-                  </span>
-                  <span class="text-pink-400 font-bold">HD</span>
+                <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-[10px] font-bold text-amber-300 hover:bg-amber-500/30 transition">
+                  VIP &bull; PRO
+                </a>
+              </div>
+
+              <!-- Interactive Filter Pills Inside Phone -->
+              <div class="px-3.5 py-2.5 space-y-2">
+                <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+                  <button onclick="filterPhoneProfiles('all')" id="phone-tab-all" class="phone-filter-btn px-3 py-1 rounded-full text-[11px] font-bold bg-neonPink text-white shadow-[0_0_12px_rgba(255,0,127,0.6)] shrink-0 transition">
+                    🇺🇸 All USA
+                  </button>
+                  <button onclick="filterPhoneProfiles('worldwide')" id="phone-tab-worldwide" class="phone-filter-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 text-gray-300 hover:text-white shrink-0 transition">
+                    🌍 Worldwide
+                  </button>
+                  <button onclick="filterPhoneProfiles('live')" id="phone-tab-live" class="phone-filter-btn px-3 py-1 rounded-full text-[11px] font-semibold bg-white/10 text-gray-300 hover:text-white shrink-0 transition">
+                    🔴 Live Now
+                  </button>
                 </div>
               </div>
 
-              <!-- App Header inside Phone -->
-              <div class="p-3.5 space-y-2.5">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-1.5">
-                    <span class="w-5 h-5 rounded-md bg-pink-600 flex items-center justify-center text-[10px] font-bold">🔥</span>
-                    <div>
-                      <p class="text-xs font-extrabold leading-none">Spark<span class="text-pink-500">Pulse</span></p>
-                      <p class="text-[9px] text-emerald-400 font-medium">● 1.4M+ US & Global Active</p>
-                    </div>
-                  </div>
-                  <span class="px-2 py-0.5 rounded-full bg-white/10 text-[9px] font-semibold text-pink-300 border border-pink-500/30">
-                    All USA ▾
-                  </span>
-                </div>
+              <!-- Interactive Profile / Live Stream Card -->
+              <div class="px-3.5 pb-4">
+                <div class="relative rounded-3xl overflow-hidden h-[360px] border border-white/15 group shadow-xl">
+                  <img
+                    id="phone-profile-img"
+                    src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=700&q=85"
+                    alt="Featured Creator"
+                    class="w-full h-full object-cover object-center transition-all duration-500 group-hover:scale-105"
+                  />
 
-                <!-- Interactive Filter Tabs inside Phone -->
-                <div class="grid grid-cols-3 gap-1 bg-white/5 p-1 rounded-full text-[10px] font-bold">
-                  <button type="button" onclick="switchPhoneProfile(0)" id="phoneTab0" class="py-1 rounded-full bg-gradient-to-r from-[#ff1e7a] to-[#d91b7a] text-white transition">Trending</button>
-                  <button type="button" onclick="switchPhoneProfile(1)" id="phoneTab1" class="py-1 rounded-full text-slate-300 hover:text-white transition">USA Live</button>
-                  <button type="button" onclick="switchPhoneProfile(2)" id="phoneTab2" class="py-1 rounded-full text-slate-300 hover:text-white transition">Worldwide</button>
-                </div>
-
-                <!-- Featured Interactive Profile/Stream Card -->
-                <div class="relative rounded-2xl overflow-hidden border border-white/15 group">
-                  <img id="phoneCardImg" src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=85" alt="Featured Streamer" class="w-full h-64 object-cover object-top transition duration-500" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-[#09061a] via-[#09061a]/30 to-transparent"></div>
-
-                  <!-- Top Badges on Card -->
-                  <div class="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between">
-                    <span class="relative px-2.5 py-0.5 rounded-full bg-black/65 backdrop-blur-md text-[9px] font-bold text-emerald-300 flex items-center gap-1.5 border border-emerald-400/30">
-                      <span class="relative w-1.5 h-1.5 rounded-full bg-emerald-400 live-dot"></span>
-                      Online Now
+                  <!-- Top Badges Over Photo -->
+                  <div class="absolute top-3 inset-x-3 flex items-center justify-between">
+                    <span id="phone-status-badge" class="px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md border border-emerald-400/50 text-[11px] font-semibold text-emerald-300 flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                      Online Now &bull; 2 mi away
                     </span>
-                    <span id="phoneMatchBadge" class="px-2.5 py-0.5 rounded-full bg-amber-400 text-black text-[9px] font-extrabold shadow">
+                    <span id="phone-match-badge" class="px-2.5 py-1 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-[11px] font-extrabold text-black shadow-md">
                       ⚡ 98% Match
                     </span>
                   </div>
 
-                  <!-- Bottom Info Overlay -->
-                  <div class="absolute bottom-2.5 left-3 right-3 space-y-1.5">
+                  <!-- Bottom Gradient Overlay & Info -->
+                  <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#070510] via-[#070510]/85 to-transparent p-4 pt-14">
                     <div class="flex items-center gap-1.5">
-                      <h3 id="phoneCardName" class="font-display text-base font-extrabold text-white">Madison, 24</h3>
-                      <span class="w-4 h-4 rounded-full bg-sky-500 text-white text-[9px] flex items-center justify-center font-bold">✓</span>
+                      <h3 id="phone-profile-name" class="font-display font-extrabold text-xl text-white">Madison, 24</h3>
+                      <span class="w-4 h-4 rounded-full bg-sky-500 flex items-center justify-center" title="Verified">
+                        <i data-lucide="check" class="w-3 h-3 text-white stroke-[3]"></i>
+                      </span>
                     </div>
-                    <p id="phoneCardLoc" class="text-[10px] text-pink-300 font-medium">📍 Los Angeles, CA • USA</p>
-                    <p id="phoneCardBio" class="text-[10px] text-slate-300 italic">"Good vibes, late night movies & live chat!"</p>
+                    <p id="phone-profile-loc" class="text-xs text-pink-300 font-medium flex items-center gap-1 mt-0.5">
+                      <i data-lucide="map-pin" class="w-3.5 h-3.5 text-neonPink"></i> Los Angeles, CA &bull; USA
+                    </p>
+                    <p id="phone-profile-bio" class="text-xs text-gray-300 italic mt-1.5 line-clamp-1">
+                      "Good vibes, late-night streams &amp; great company!"
+                    </p>
 
                     <!-- Interest Tags -->
-                    <div class="flex flex-wrap gap-1 pt-0.5">
-                      <span class="px-2 py-0.5 rounded-full bg-white/15 backdrop-blur-md text-[9px] font-semibold">🎵 Music</span>
-                      <span class="px-2 py-0.5 rounded-full bg-white/15 backdrop-blur-md text-[9px] font-semibold">🎬 Movies</span>
-                      <span class="px-2 py-0.5 rounded-full bg-white/15 backdrop-blur-md text-[9px] font-semibold">✈️ Travel</span>
+                    <div id="phone-profile-tags" class="flex flex-wrap gap-1.5 mt-2.5">
+                      <span class="px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-medium text-white border border-white/10">🎵 Music</span>
+                      <span class="px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-medium text-white border border-white/10">✈️ Travel</span>
+                      <span class="px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-medium text-white border border-white/10">🎬 Movies</span>
+                    </div>
+
+                    <!-- Interactive Action Buttons Inside Phone -->
+                    <div class="grid grid-cols-5 gap-2 mt-3.5">
+                      <button
+                        onclick="nextPhoneProfile()"
+                        title="Next Profile"
+                        class="col-span-2 py-2.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/15 text-xs font-bold text-white flex items-center justify-center gap-1 transition active:scale-95"
+                      >
+                        <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i> Next
+                      </button>
+
+                      <a
+                        id="phone-connect-cta"
+                        href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="col-span-3 py-2.5 rounded-2xl btn-neon-primary text-xs font-extrabold text-white flex items-center justify-center gap-1.5"
+                      >
+                        <i data-lucide="video" class="w-3.5 h-3.5"></i>
+                        <span>Connect / Watch Live</span>
+                      </a>
                     </div>
                   </div>
                 </div>
-
-                <!-- Phone Action CTA -->
-                <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="block w-full py-2.5 rounded-xl btn-neon-primary text-center text-xs font-extrabold tracking-wide text-white">
-                  Connect & Watch Live →
-                </a>
               </div>
+
             </div>
           </div>
 
-          <!-- Floating Cursive Badge Bottom Right -->
-          <div class="hidden sm:block absolute -bottom-3 right-2 lg:-right-3 z-20 rotate-[-7deg] bg-[#140d33]/90 border border-pink-500/40 backdrop-blur-md px-4 py-2 rounded-2xl shadow-[0_10px_30px_rgba(255,30,122,0.35)]">
-            <p class="font-display text-sm font-black leading-tight text-white">
-              Find Your <span class="text-neon-pink block text-base">Perfect Stream!</span>
-            </p>
-          </div>
         </div>
       </div>
+    </section>
 
-      <!-- 4-Column Feature Strip -->
-      <section id="features" class="mt-14 lg:mt-20 glass-panel rounded-3xl p-6 sm:p-8">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:divide-x lg:divide-white/10">
+    <!-- ==================== FEATURE HIGHLIGHTS BAR (4 GLASS CARDS) ==================== -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border border-white/10">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 lg:divide-x lg:divide-white/10">
+          
           <!-- Feature 1 -->
           <div class="flex flex-col items-center text-center px-3">
-            <div class="w-12 h-12 rounded-2xl bg-pink-500/15 border border-pink-500/40 flex items-center justify-center text-pink-400 mb-3.5 shadow-[0_0_20px_rgba(255,30,122,0.25)]">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/></svg>
+            <div class="w-13 h-13 p-3.5 rounded-2xl bg-neonPink/15 border border-neonPink/40 text-neonPink shadow-[0_0_20px_rgba(255,0,127,0.3)] mb-3.5">
+              <i data-lucide="zap" class="w-6 h-6"></i>
             </div>
-            <h3 class="font-display font-bold text-base text-white">Lightning Fast</h3>
-            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Enjoy ultra-smooth 4K streaming with zero buffering.</p>
+            <h3 class="font-display font-bold text-lg text-white">Lightning Fast</h3>
+            <p class="text-sm text-gray-400 mt-1">Instant HD loading with zero buffering across devices.</p>
           </div>
 
           <!-- Feature 2 -->
           <div class="flex flex-col items-center text-center px-3">
-            <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-400/40 flex items-center justify-center text-cyan-400 mb-3.5 shadow-[0_0_20px_rgba(0,229,255,0.25)]">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+            <div class="w-13 h-13 p-3.5 rounded-2xl bg-sky-500/15 border border-sky-400/40 text-sky-400 shadow-[0_0_20px_rgba(56,189,248,0.3)] mb-3.5">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
             </div>
-            <h3 class="font-display font-bold text-base text-white">100% Secure</h3>
-            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Encrypted private access — your data stays safe with us.</p>
+            <h3 class="font-display font-bold text-lg text-white">100% Secure &amp; Private</h3>
+            <p class="text-sm text-gray-400 mt-1">End-to-end encrypted &amp; discreet access guaranteed.</p>
           </div>
 
           <!-- Feature 3 -->
           <div class="flex flex-col items-center text-center px-3">
-            <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-400/40 flex items-center justify-center text-emerald-400 mb-3.5 shadow-[0_0_20px_rgba(16,185,129,0.25)]">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+            <div class="w-13 h-13 p-3.5 rounded-2xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.3)] mb-3.5">
+              <i data-lucide="globe" class="w-6 h-6"></i>
             </div>
-            <h3 class="font-display font-bold text-base text-white">Global Access</h3>
-            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Instant high-speed servers available in USA & Worldwide.</p>
+            <h3 class="font-display font-bold text-lg text-white">USA &amp; Worldwide Access</h3>
+            <p class="text-sm text-gray-400 mt-1">Geo-optimized edge servers for ultra-low latency.</p>
           </div>
 
           <!-- Feature 4 -->
           <div class="flex flex-col items-center text-center px-3">
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-400/40 flex items-center justify-center text-amber-400 mb-3.5 shadow-[0_0_20px_rgba(245,158,11,0.25)]">
-              <span class="font-display font-black text-xs px-1.5 py-0.5 border-2 border-amber-400 rounded">HD</span>
+            <div class="w-13 h-13 p-3.5 rounded-2xl bg-amber-500/15 border border-amber-400/40 text-amber-400 shadow-[0_0_20px_rgba(251,191,36,0.3)] mb-3.5">
+              <i data-lucide="tv" class="w-6 h-6"></i>
             </div>
-            <h3 class="font-display font-bold text-base text-white">4K & HD Quality</h3>
-            <p class="text-xs text-slate-400 mt-1 leading-relaxed">Watch movies, series & live shows in crystal-clear quality.</p>
+            <h3 class="font-display font-bold text-lg text-white">Ultra HD Quality</h3>
+            <p class="text-sm text-gray-400 mt-1">Crystal clear 4K/HD streams &amp; live interactive rooms.</p>
           </div>
-        </div>
-      </section>
 
-      <!-- Trending Now Showcase -->
-      <section id="trending" class="mt-14 lg:mt-18">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-          <div class="flex items-center gap-3">
-            <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shadow-[0_0_18px_rgba(255,30,122,0.5)]">
-              🔥
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TRENDING ENTERTAINMENT & LIVE SHOWCASE GRID ==================== -->
+    <section id="trending" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <!-- Header & Category Filter Tabs -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <span class="w-9 h-9 rounded-xl bg-neonPink/20 border border-neonPink/40 flex items-center justify-center text-neonPink">
+              <i data-lucide="flame" class="w-5 h-5 fill-neonPink"></i>
             </span>
-            <div>
-              <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-white">Trending Now</h2>
-              <p class="text-xs text-slate-400">Most watched right now in USA & Worldwide</p>
-            </div>
+            <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white">
+              Trending Now in <span class="text-gradient-neon">USA &amp; Worldwide</span>
+            </h2>
+          </div>
+          <p class="text-sm text-gray-400 mt-1.5">Handpicked blockbuster streams, live shows &amp; VIP creator rooms.</p>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="filterTrending('all')" class="trend-tab-btn active px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-neonPink text-white shadow-[0_0_15px_rgba(255,0,127,0.5)] transition" data-cat="all">All</button>
+          <button onclick="filterTrending('top')" class="trend-tab-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white/[0.06] text-gray-300 hover:text-white border border-white/10 transition" data-cat="top">Top Rated</button>
+          <button onclick="filterTrending('live')" class="trend-tab-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white/[0.06] text-gray-300 hover:text-white border border-white/10 transition" data-cat="live">Live Streams</button>
+          <button onclick="filterTrending('vip')" class="trend-tab-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white/[0.06] text-amber-300 hover:text-amber-200 border border-amber-400/20 transition" data-cat="vip">👑 Exclusives</button>
+          <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="ml-1 text-sm font-bold text-neonPink hover:text-pink-300 flex items-center gap-1 transition">
+            View All <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Cards Grid (6 High-Contrast Stylized Cards) -->
+      <div id="trending-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5">
+        
+        <!-- Card 1 -->
+        <div class="trend-card glass-card rounded-2xl overflow-hidden group relative flex flex-col justify-between h-[330px]" data-category="top">
+          <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Neon Odyssey" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070510] via-[#070510]/45 to-transparent"></div>
+          
+          <div class="relative z-10 p-3 flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md text-[11px] font-bold text-emerald-300 border border-emerald-400/30 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> 18.4K Watching
+            </span>
+            <span class="px-2 py-0.5 rounded-lg bg-amber-400 text-black text-[11px] font-extrabold">★ 9.6</span>
           </div>
 
-          <div class="flex items-center gap-2">
-            <button type="button" onclick="filterTrending('all')" class="trend-filter active-filter px-3.5 py-1.5 rounded-full text-xs font-bold bg-pink-600 text-white transition">All</button>
-            <button type="button" onclick="filterTrending('movie')" class="trend-filter px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/5 text-slate-300 hover:bg-white/10 transition">Movies</button>
-            <button type="button" onclick="filterTrending('series')" class="trend-filter px-3.5 py-1.5 rounded-full text-xs font-bold bg-white/5 text-slate-300 hover:bg-white/10 transition">Series</button>
-            <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="ml-2 text-xs sm:text-sm font-bold text-pink-400 hover:text-pink-300 flex items-center gap-1 transition">
-              View More <span>→</span>
+          <div class="relative z-10 p-4">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-pink-300">Sci-Fi &bull; 4K HDR</span>
+            <h3 class="font-display font-bold text-lg text-white mt-0.5">Solaris Protocol</h3>
+            <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="mt-3 w-full py-2.5 rounded-xl btn-neon-primary text-xs font-bold text-white flex items-center justify-center gap-1.5">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-white"></i> Watch Now
             </a>
           </div>
         </div>
 
-        <!-- 5 Trending Cards Grid -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
-          <!-- Card 1: Oppenheimer -->
-          <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" data-category="movie" class="trending-card glass-card-hover group relative rounded-2xl overflow-hidden border border-white/10 bg-[#120e29] aspect-[3/4] block">
-            <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80" alt="Oppenheimer" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#070514] via-[#070514]/35 to-transparent"></div>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-amber-500/90 text-black text-[10px] font-extrabold">4K UHD</span>
-            <div class="absolute bottom-3.5 left-3.5 right-3.5">
-              <h3 class="font-display font-bold text-base text-white group-hover:text-pink-400 transition">Oppenheimer</h3>
-              <div class="mt-1.5 inline-flex items-center gap-1.5 text-xs font-semibold text-pink-400">
-                <span class="w-5 h-5 rounded-full bg-pink-600 text-white flex items-center justify-center text-[9px]">▶</span>
-                <span>Watch Now</span>
-              </div>
-            </div>
-          </a>
+        <!-- Card 2 -->
+        <div class="trend-card glass-card rounded-2xl overflow-hidden group relative flex flex-col justify-between h-[330px]" data-category="live">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Miami Nights Live" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070510] via-[#070510]/45 to-transparent"></div>
+          
+          <div class="relative z-10 p-3 flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-full bg-rose-600/85 backdrop-blur-md text-[11px] font-bold text-white flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> LIVE &bull; 24.1K
+            </span>
+            <span class="px-2 py-0.5 rounded-lg bg-black/70 text-white text-[11px] font-bold border border-white/15">🇺🇸 USA</span>
+          </div>
 
-          <!-- Card 2: Spider-Man -->
-          <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" data-category="movie" class="trending-card glass-card-hover group relative rounded-2xl overflow-hidden border border-white/10 bg-[#120e29] aspect-[3/4] block">
-            <img src="https://images.unsplash.com/photo-1635805737707-575885ab0820?auto=format&fit=crop&w=600&q=80" alt="Spider-Man" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#070514] via-[#070514]/35 to-transparent"></div>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-pink-600/90 text-white text-[10px] font-extrabold">TOP #1</span>
-            <div class="absolute bottom-3.5 left-3.5 right-3.5">
-              <h3 class="font-display font-bold text-base text-white group-hover:text-pink-400 transition">Spider-Man</h3>
-              <div class="mt-1.5 inline-flex items-center gap-1.5 text-xs font-semibold text-pink-400">
-                <span class="w-5 h-5 rounded-full bg-pink-600 text-white flex items-center justify-center text-[9px]">▶</span>
-                <span>Watch Now</span>
-              </div>
-            </div>
-          </a>
-
-          <!-- Card 3: The Batman -->
-          <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" data-category="movie" class="trending-card glass-card-hover group relative rounded-2xl overflow-hidden border border-white/10 bg-[#120e29] aspect-[3/4] block">
-            <img src="https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?auto=format&fit=crop&w=600&q=80" alt="The Batman" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#070514] via-[#070514]/35 to-transparent"></div>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-purple-600/90 text-white text-[10px] font-extrabold">DOLBY</span>
-            <div class="absolute bottom-3.5 left-3.5 right-3.5">
-              <h3 class="font-display font-bold text-base text-white group-hover:text-pink-400 transition">The Batman</h3>
-              <div class="mt-1.5 inline-flex items-center gap-1.5 text-xs font-semibold text-pink-400">
-                <span class="w-5 h-5 rounded-full bg-pink-600 text-white flex items-center justify-center text-[9px]">▶</span>
-                <span>Watch Now</span>
-              </div>
-            </div>
-          </a>
-
-          <!-- Card 4: Avatar -->
-          <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" data-category="movie" class="trending-card glass-card-hover group relative rounded-2xl overflow-hidden border border-white/10 bg-[#120e29] aspect-[3/4] block">
-            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="Avatar" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#070514] via-[#070514]/35 to-transparent"></div>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-cyan-500/90 text-black text-[10px] font-extrabold">IMAX</span>
-            <div class="absolute bottom-3.5 left-3.5 right-3.5">
-              <h3 class="font-display font-bold text-base text-white group-hover:text-pink-400 transition">Avatar</h3>
-              <div class="mt-1.5 inline-flex items-center gap-1.5 text-xs font-semibold text-pink-400">
-                <span class="w-5 h-5 rounded-full bg-pink-600 text-white flex items-center justify-center text-[9px]">▶</span>
-                <span>Watch Now</span>
-              </div>
-            </div>
-          </a>
-
-          <!-- Card 5: Wednesday -->
-          <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" data-category="series" class="trending-card glass-card-hover group relative rounded-2xl overflow-hidden border border-white/10 bg-[#120e29] aspect-[3/4] col-span-2 sm:col-span-1 block">
-            <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Wednesday" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#070514] via-[#070514]/35 to-transparent"></div>
-            <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-fuchsia-600/90 text-white text-[10px] font-extrabold">SERIES</span>
-            <div class="absolute bottom-3.5 left-3.5 right-3.5">
-              <h3 class="font-display font-bold text-base text-white group-hover:text-pink-400 transition">Wednesday</h3>
-              <div class="mt-1.5 inline-flex items-center gap-1.5 text-xs font-semibold text-pink-400">
-                <span class="w-5 h-5 rounded-full bg-pink-600 text-white flex items-center justify-center text-[9px]">▶</span>
-                <span>Watch Now</span>
-              </div>
-            </div>
-          </a>
+          <div class="relative z-10 p-4">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-cyan-300">Live Lounge &bull; Miami</span>
+            <h3 class="font-display font-bold text-lg text-white mt-0.5">Neon Afterhours</h3>
+            <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="mt-3 w-full py-2.5 rounded-xl btn-neon-primary text-xs font-bold text-white flex items-center justify-center gap-1.5">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-white"></i> Watch Now
+            </a>
+          </div>
         </div>
-      </section>
 
-      <!-- Choose Your Region Banner (USA & Worldwide High-Conversion Router) -->
-      <section class="mt-14 relative rounded-3xl p-6 sm:p-8 overflow-hidden border border-pink-500/35 bg-gradient-to-r from-[#1a0b38]/90 via-[#240d4a]/90 to-[#140a2e]/90 shadow-[0_20px_50px_rgba(139,44,245,0.25)]">
-        <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <!-- Card 3 -->
+        <div class="trend-card glass-card rounded-2xl overflow-hidden group relative flex flex-col justify-between h-[330px]" data-category="top">
+          <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80" alt="Cyber Knight" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070510] via-[#070510]/45 to-transparent"></div>
+          
+          <div class="relative z-10 p-3 flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md text-[11px] font-bold text-emerald-300 border border-emerald-400/30">
+              14.2K Watching
+            </span>
+            <span class="px-2 py-0.5 rounded-lg bg-amber-400 text-black text-[11px] font-extrabold">★ 9.4</span>
+          </div>
 
-        <div class="relative flex flex-col lg:flex-row items-center justify-between gap-6">
-          <div class="flex items-center gap-4 text-center sm:text-left flex-col sm:flex-row">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500/25 to-purple-600/25 border border-pink-400/40 flex items-center justify-center text-pink-400 shrink-0 shadow-[0_0_25px_rgba(255,30,122,0.3)]">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div class="relative z-10 p-4">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-purple-300">Action &bull; Thriller</span>
+            <h3 class="font-display font-bold text-lg text-white mt-0.5">Shadow Vigilante</h3>
+            <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="mt-3 w-full py-2.5 rounded-xl btn-neon-primary text-xs font-bold text-white flex items-center justify-center gap-1.5">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-white"></i> Watch Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 4 (VIP Locked Modal Trigger) -->
+        <div class="trend-card glass-card rounded-2xl overflow-hidden group relative flex flex-col justify-between h-[330px] border-amber-400/30" data-category="vip">
+          <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80" alt="VIP Private Stream" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070510] via-[#070510]/50 to-transparent"></div>
+          
+          <div class="relative z-10 p-3 flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-full bg-amber-500/90 text-black text-[11px] font-extrabold flex items-center gap-1">
+              <i data-lucide="crown" class="w-3 h-3"></i> VIP EXCLUSIVE
+            </span>
+            <span class="px-2 py-0.5 rounded-lg bg-black/70 text-amber-300 text-[11px] font-bold">18+</span>
+          </div>
+
+          <div class="relative z-10 p-4">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-amber-300">Private Room &bull; LA</span>
+            <h3 class="font-display font-bold text-lg text-white mt-0.5">Chloe VIP Backstage</h3>
+            <button onclick="openVerifyModal('Chloe VIP Backstage')" class="mt-3 w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-xs font-extrabold text-black flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(251,191,36,0.45)] transition">
+              <i data-lucide="lock" class="w-3.5 h-3.5"></i> Unlock VIP Room
+            </button>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="trend-card glass-card rounded-2xl overflow-hidden group relative flex flex-col justify-between h-[330px]" data-category="live">
+          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80" alt="Astral Pulse" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070510] via-[#070510]/45 to-transparent"></div>
+          
+          <div class="relative z-10 p-3 flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md text-[11px] font-bold text-cyan-300 border border-cyan-400/30">
+              19.8K Watching
+            </span>
+            <span class="px-2 py-0.5 rounded-lg bg-amber-400 text-black text-[11px] font-extrabold">★ 9.7</span>
+          </div>
+
+          <div class="relative z-10 p-4">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-cyan-300">Fantasy &bull; Adventure</span>
+            <h3 class="font-display font-bold text-lg text-white mt-0.5">Pandora Horizon</h3>
+            <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="mt-3 w-full py-2.5 rounded-xl btn-neon-primary text-xs font-bold text-white flex items-center justify-center gap-1.5">
+              <i data-lucide="play" class="w-3.5 h-3.5 fill-white"></i> Watch Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 6 (VIP Locked Modal Trigger) -->
+        <div class="trend-card glass-card rounded-2xl overflow-hidden group relative flex flex-col justify-between h-[330px] border-amber-400/30" data-category="vip">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=600&q=80" alt="Midnight Velvet" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#070510] via-[#070510]/50 to-transparent"></div>
+          
+          <div class="relative z-10 p-3 flex items-center justify-between">
+            <span class="px-2.5 py-1 rounded-full bg-amber-500/90 text-black text-[11px] font-extrabold flex items-center gap-1">
+              <i data-lucide="crown" class="w-3 h-3"></i> VIP STREAM
+            </span>
+            <span class="px-2 py-0.5 rounded-lg bg-black/70 text-white text-[11px] font-bold">🌍 Global</span>
+          </div>
+
+          <div class="relative z-10 p-4">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-pink-300">Exclusive Series &bull; NYC</span>
+            <h3 class="font-display font-bold text-lg text-white mt-0.5">Midnight Velvet</h3>
+            <button onclick="openVerifyModal('Midnight Velvet VIP')" class="mt-3 w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-xs font-extrabold text-black flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(251,191,36,0.45)] transition">
+              <i data-lucide="lock" class="w-3.5 h-3.5"></i> Unlock VIP Room
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== INTERACTIVE REGION SELECTOR BANNER (USA VS WORLDWIDE) ==================== -->
+    <section id="region-select" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div class="relative rounded-3xl overflow-hidden p-7 sm:p-10 border border-neonPink/40 bg-gradient-to-r from-[#1c0a38] via-[#240b44] to-[#130829] shadow-[0_0_50px_rgba(255,0,127,0.25)]">
+        <!-- Decorative Radial Glow -->
+        <div class="absolute -left-16 -bottom-16 w-72 h-72 bg-neonPink/25 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -right-16 -top-16 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <!-- Left Text -->
+          <div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-5">
+            <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-neonPink to-purple-600 flex items-center justify-center shrink-0 shadow-[0_0_25px_rgba(255,0,127,0.6)]">
+              <i data-lucide="globe-2" class="w-9 h-9 text-white"></i>
             </div>
             <div>
-              <h3 class="font-display text-xl sm:text-2xl font-extrabold text-white">Choose Your Region</h3>
-              <p class="text-xs sm:text-sm text-slate-300 mt-0.5">Select your fastest server node for instant HD access & local live rooms</p>
+              <span class="inline-block px-3 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold mb-2">
+                ⚡ Smart Geo-Routing Active
+              </span>
+              <h2 class="font-display font-extrabold text-2xl sm:text-3xl text-white">
+                Choose Your Region
+              </h2>
+              <p class="text-sm sm:text-base text-gray-300 mt-1 max-w-xl">
+                Unlock localized high-speed servers &amp; top trending content tailored for your area.
+              </p>
             </div>
           </div>
 
+          <!-- Two Large Interactive Glowing Region CTA Buttons -->
           <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
-            <!-- USA Region Button -->
-            <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="w-full sm:w-52 px-6 py-3.5 rounded-full bg-[#120a2a] hover:bg-pink-600/20 border border-pink-500/50 hover:border-pink-400 flex items-center justify-between group transition shadow-[0_0_25px_rgba(255,30,122,0.2)]">
-              <span class="flex items-center gap-3">
-                <span class="text-xl">🇺🇸</span>
-                <span class="font-display font-bold text-white">USA</span>
-              </span>
-              <span class="text-pink-400 group-hover:translate-x-1 transition-transform font-bold">→</span>
+            <a
+              href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-[#0d071d]/90 hover:bg-neonPink/20 border-2 border-neonPink/60 hover:border-neonPink text-white font-display font-bold text-base flex items-center justify-between sm:justify-center gap-4 shadow-[0_0_25px_rgba(255,0,127,0.3)] hover:shadow-[0_0_35px_rgba(255,0,127,0.6)] transition group"
+            >
+              <div class="flex items-center gap-3">
+                <span class="text-2xl">🇺🇸</span>
+                <div class="text-left">
+                  <div class="leading-tight">USA</div>
+                  <div class="text-[11px] font-medium text-emerald-400">Fastest Server &bull; 12ms</div>
+                </div>
+              </div>
+              <i data-lucide="arrow-right" class="w-5 h-5 text-neonPink group-hover:translate-x-1 transition-transform"></i>
             </a>
 
-            <!-- Worldwide Region Button -->
-            <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" class="w-full sm:w-56 px-6 py-3.5 rounded-full bg-[#120a2a] hover:bg-purple-600/25 border border-purple-500/50 hover:border-cyan-400 flex items-center justify-between group transition shadow-[0_0_25px_rgba(139,44,245,0.2)]">
-              <span class="flex items-center gap-3">
-                <span class="text-xl">🌐</span>
-                <span class="font-display font-bold text-white">Worldwide</span>
-              </span>
-              <span class="text-cyan-400 group-hover:translate-x-1 transition-transform font-bold">→</span>
+            <a
+              href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-[#0d071d]/90 hover:bg-cyan-500/15 border-2 border-cyan-400/50 hover:border-cyan-300 text-white font-display font-bold text-base flex items-center justify-between sm:justify-center gap-4 shadow-[0_0_25px_rgba(0,240,255,0.2)] hover:shadow-[0_0_35px_rgba(0,240,255,0.45)] transition group"
+            >
+              <div class="flex items-center gap-3">
+                <span class="text-2xl">🌍</span>
+                <div class="text-left">
+                  <div class="leading-tight">Worldwide</div>
+                  <div class="text-[11px] font-medium text-cyan-300">Global Access &bull; 190+ Countries</div>
+                </div>
+              </div>
+              <i data-lucide="arrow-right" class="w-5 h-5 text-cyan-300 group-hover:translate-x-1 transition-transform"></i>
             </a>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
+
+    <!-- ==================== MEMBER TESTIMONIALS / REVIEWS ==================== -->
+    <section id="reviews" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-neonPink">Verified Community Feedback</span>
+        <h2 class="font-display font-extrabold text-2xl sm:text-4xl text-white mt-2">
+          Loved by Millions Across <span class="text-gradient-neon">USA &amp; Worldwide</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Review 1 -->
+        <div class="glass-card rounded-3xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" alt="Ryan M." class="w-11 h-11 rounded-full object-cover ring-2 ring-neonPink/50" />
+              <div>
+                <h4 class="font-display font-bold text-sm text-white">Ryan Miller</h4>
+                <p class="text-xs text-gray-400">Austin, TX &bull; USA</p>
+              </div>
+            </div>
+            <div class="flex text-amber-400 text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          </div>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            "Hands down the smoothest streaming and live social hub I've tried. Zero buffering even on mobile data, and the USA servers connect instantly."
+          </p>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="glass-card rounded-3xl p-6 space-y-4 border-neonPink/30">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="Elena R." class="w-11 h-11 rounded-full object-cover ring-2 ring-cyan-400/50" />
+              <div>
+                <h4 class="font-display font-bold text-sm text-white">Elena Rostova</h4>
+                <p class="text-xs text-gray-400">London &bull; UK (Worldwide)</p>
+              </div>
+            </div>
+            <div class="flex text-amber-400 text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          </div>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            "The VIP rooms and 4K quality look unreal. Love how easy it is to switch between trending shows and live interactive streams!"
+          </p>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="glass-card rounded-3xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&q=80" alt="Marcus K." class="w-11 h-11 rounded-full object-cover ring-2 ring-purple-400/50" />
+              <div>
+                <h4 class="font-display font-bold text-sm text-white">Marcus Vance</h4>
+                <p class="text-xs text-gray-400">New York, NY &bull; USA</p>
+              </div>
+            </div>
+            <div class="flex text-amber-400 text-xs">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          </div>
+          <p class="text-sm text-gray-300 leading-relaxed">
+            "Super clean, private, and fast. Joined free in seconds and unlocked VIP access the same night. Easily 5 stars."
+          </p>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="border-t border-white/10 bg-[#05030e] py-8">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <a href="#top" class="flex items-center gap-2">
-        <span class="w-7 h-7 rounded-lg bg-gradient-to-br from-[#ff1e7a] to-[#9b26f6] flex items-center justify-center text-xs">🔥</span>
-        <span class="font-display text-lg font-extrabold">Spark<span class="text-[#ff2a85]">Pulse</span></span>
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="relative z-10 border-t border-white/10 bg-[#05030c]/90 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
+      <!-- Brand -->
+      <a href="#top" class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-neonPink to-purple-600 flex items-center justify-center shadow-[0_0_15px_rgba(255,0,127,0.5)]">
+          <i data-lucide="flame" class="w-5 h-5 text-white fill-white"></i>
+        </div>
+        <span class="font-display font-extrabold text-xl text-white">
+          Spark<span class="text-gradient-neon">Pulse</span>
+        </span>
       </a>
 
-      <p class="text-xs text-slate-400 text-center">
-        © 2026 SparkPulse. All rights reserved. • USA & Worldwide Streaming Hub
-      </p>
+      <!-- Quick Links & Copyright -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 text-xs sm:text-sm text-gray-400">
+        <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">Start Free</a>
+        <span class="hidden sm:inline">&bull;</span>
+        <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" class="hover:text-amber-300 transition">VIP Membership</a>
+        <span class="hidden sm:inline">&bull;</span>
+        <span>&copy; 2026 SparkPulse. All rights reserved.</span>
+      </div>
 
-      <div class="flex items-center gap-2.5">
-        <span class="text-xs text-slate-400 mr-1">Follow Us:</span>
-        <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-8 h-8 rounded-full bg-red-600/90 hover:bg-red-500 flex items-center justify-center text-white text-xs transition">▶</a>
-        <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="w-8 h-8 rounded-full bg-sky-500/90 hover:bg-sky-400 flex items-center justify-center text-white text-xs transition">𝕏</a>
-        <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="w-8 h-8 rounded-full bg-blue-500/90 hover:bg-blue-400 flex items-center justify-center text-white text-xs transition">✈</a>
-        <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="w-8 h-8 rounded-full bg-indigo-600/90 hover:bg-indigo-500 flex items-center justify-center text-white text-xs transition">💬</a>
+      <!-- Glowing Social Icons -->
+      <div class="flex items-center gap-3">
+        <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="w-9 h-9 rounded-full bg-rose-600/20 border border-rose-500/40 hover:bg-rose-600 text-rose-400 hover:text-white flex items-center justify-center transition shadow-[0_0_15px_rgba(225,29,72,0.3)]">
+          <i data-lucide="youtube" class="w-4 h-4"></i>
+        </a>
+        <a href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79" target="_blank" rel="noopener noreferrer" aria-label="Twitter" class="w-9 h-9 rounded-full bg-sky-500/20 border border-sky-400/40 hover:bg-sky-500 text-sky-400 hover:text-white flex items-center justify-center transition shadow-[0_0_15px_rgba(14,165,233,0.3)]">
+          <i data-lucide="twitter" class="w-4 h-4"></i>
+        </a>
+        <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="w-9 h-9 rounded-full bg-cyan-500/20 border border-cyan-400/40 hover:bg-cyan-500 text-cyan-300 hover:text-white flex items-center justify-center transition shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+          <i data-lucide="send" class="w-4 h-4"></i>
+        </a>
+        <a href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54" target="_blank" rel="noopener noreferrer" aria-label="Community" class="w-9 h-9 rounded-full bg-indigo-500/20 border border-indigo-400/40 hover:bg-indigo-500 text-indigo-300 hover:text-white flex items-center justify-center transition shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+        </a>
       </div>
     </div>
   </footer>
 
-  <!-- Dismissible Live Activity Notification Toast -->
-  <div id="liveToast" class="fixed bottom-4 left-4 z-40 max-w-xs glass-panel border-pink-500/40 rounded-2xl p-3 flex items-center gap-3 shadow-2xl transition-all duration-500">
-    <img id="toastAvatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" alt="User" class="w-10 h-10 rounded-full object-cover ring-2 ring-pink-500 shrink-0" />
-    <div class="min-w-0 flex-1">
-      <p id="toastText" class="text-xs font-semibold text-white truncate">Chloe from Texas, USA</p>
-      <p id="toastSub" class="text-[11px] text-emerald-400 truncate">Just started watching in 4K • Now</p>
+  <!-- ==================== DISMISSIBLE FLOATING LIVE ACTIVITY TOAST ==================== -->
+  <div id="live-toast" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 glass-card rounded-2xl p-4 border border-neonPink/50 shadow-[0_10px_40px_rgba(255,0,127,0.35)] transition-all duration-500">
+    <div class="flex items-start gap-3">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-neonPink to-orange-500 flex items-center justify-center shrink-0 animate-pulse">
+        <i data-lucide="flame" class="w-5 h-5 text-white fill-white"></i>
+      </div>
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-[11px] font-extrabold uppercase tracking-wider text-emerald-400 flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Live Activity
+          </span>
+          <button onclick="dismissToast()" aria-label="Close notification" class="text-gray-400 hover:text-white p-0.5">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+        <p id="toast-message" class="text-xs sm:text-sm font-semibold text-white mt-0.5 leading-snug">
+          🔥 2,480 users from USA joined in the last hour — Claim Free Access
+        </p>
+        <a
+          href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1 text-xs font-bold text-neonPink hover:text-pink-300 mt-1.5 transition"
+        >
+          Activate Instant Free Pass <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
     </div>
-    <button type="button" onclick="document.getElementById('liveToast').style.display='none'" aria-label="Close notification" class="text-slate-400 hover:text-white text-xs px-1">✕</button>
   </div>
 
+  <!-- ==================== AGE / REGION QUICK-VERIFY MODAL FOR VIP CARDS ==================== -->
+  <div id="vip-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+    <div class="glass-card max-w-md w-full rounded-3xl p-6 sm:p-8 border border-amber-400/50 relative text-center space-y-5 shadow-[0_0_60px_rgba(255,0,127,0.4)]">
+      <button onclick="closeVerifyModal()" aria-label="Close modal" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-gray-300 hover:text-white">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-neonPink mx-auto flex items-center justify-center shadow-[0_0_30px_rgba(251,191,36,0.5)]">
+        <i data-lucide="crown" class="w-8 h-8 text-white"></i>
+      </div>
+
+      <div>
+        <span class="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/40 text-amber-300 text-xs font-bold">
+          VIP &amp; Region Quick-Verify
+        </span>
+        <h3 id="modal-room-title" class="font-display font-extrabold text-2xl text-white mt-2">
+          Unlock VIP Access
+        </h3>
+        <p class="text-sm text-gray-300 mt-1.5">
+          Confirm you are 18+ and select your preferred high-speed gateway to enter instantly.
+        </p>
+      </div>
+
+      <div class="space-y-3 pt-1">
+        <a
+          href="https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54"
+          target="_blank"
+          rel="noopener noreferrer"
+          onclick="closeVerifyModal()"
+          class="w-full py-3.5 px-5 rounded-2xl btn-neon-primary font-display font-bold text-sm sm:text-base text-white flex items-center justify-center gap-2"
+        >
+          <span>🇺🇸 Yes, I'm 18+ &mdash; Enter USA VIP</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+
+        <a
+          href="https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79"
+          target="_blank"
+          rel="noopener noreferrer"
+          onclick="closeVerifyModal()"
+          class="w-full py-3.5 px-5 rounded-2xl btn-neon-secondary font-display font-bold text-sm sm:text-base text-white flex items-center justify-center gap-2"
+        >
+          <span>🌍 Enter Worldwide Free Stream</span>
+          <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <p class="text-[11px] text-gray-400">
+        100% Free registration &bull; Instant encrypted access
+      </p>
+    </div>
+  </div>
+
+  <!-- ==================== VANILLA JS INTERACTIVITY ==================== -->
   <script>
-    // Interactive Phone Card Switcher
-    const phoneProfiles = [
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Primary & Secondary Monetization URLs
+    const AD_URL_1 = "https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79";
+    const AD_URL_2 = "https://auctionr.org/4/0a1752a1f507972718f7c913e584ed54";
+
+    // Interactive Phone Mockup Profiles Data
+    const profiles = [
       {
+        category: "all",
         name: "Madison, 24",
-        loc: "📍 Los Angeles, CA • USA",
-        bio: '"Good vibes, late night movies & live chat!"',
+        location: "Los Angeles, CA • USA",
+        status: "Online Now • 2 mi away",
         match: "⚡ 98% Match",
-        img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&q=85"
+        bio: '"Good vibes, late-night streams & great company!"',
+        tags: ["🎵 Music", "✈️ Travel", "🎬 Movies"],
+        img: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=700&q=85",
+        url: AD_URL_1
       },
       {
-        name: "Sophia, 23",
-        loc: "📍 Miami, FL • USA Live",
-        bio: '"Streaming trending series & hanging out with US fans!"',
-        match: "🔥 Live VIP",
-        img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=85"
+        category: "live",
+        name: "Chloe, 22",
+        location: "Miami, FL • USA",
+        status: "🔴 Live Stream • 4.2K Viewers",
+        match: "🔥 Top Live",
+        bio: '"Live DJ set & Q&A from South Beach tonight!"',
+        tags: ["🎧 DJ Live", "🏖️ Miami", "💃 Dance"],
+        img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=85",
+        url: AD_URL_2
       },
       {
-        name: "Elena, 25",
-        loc: "📍 London & Worldwide • Global",
-        bio: '"Movie marathons, music & meeting friends globally!"',
-        match: "🌐 Global #1",
-        img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=600&q=85"
+        category: "worldwide",
+        name: "Sophia, 25",
+        location: "New York, NY • Worldwide",
+        status: "Online Now • Verified VIP",
+        match: "⚡ 96% Match",
+        bio: '"Streaming sci-fi marathons & chatting with fans."',
+        tags: ["🍿 Sci-Fi", "🏋️ Fitness", "☕ Coffee"],
+        img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=85",
+        url: AD_URL_1
+      },
+      {
+        category: "worldwide",
+        name: "Aria, 23",
+        location: "London • Worldwide Access",
+        status: "🔴 Live Room • VIP",
+        match: "👑 VIP Star",
+        bio: '"Late night acoustic sessions & movie watch-alongs!"',
+        tags: ["🎸 Acoustic", "🌍 Travel", "✨ VIP"],
+        img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=700&q=85",
+        url: AD_URL_2
       }
     ];
 
-    function switchPhoneProfile(index) {
-      const p = phoneProfiles[index];
-      document.getElementById('phoneCardName').textContent = p.name;
-      document.getElementById('phoneCardLoc').textContent = p.loc;
-      document.getElementById('phoneCardBio').textContent = p.bio;
-      document.getElementById('phoneMatchBadge').textContent = p.match;
-      document.getElementById('phoneCardImg').src = p.img;
+    let currentProfileIndex = 0;
 
-      [0, 1, 2].forEach(i => {
-        const btn = document.getElementById('phoneTab' + i);
-        if (i === index) {
-          btn.className = "py-1 rounded-full bg-gradient-to-r from-[#ff1e7a] to-[#d91b7a] text-white transition";
+    function renderPhoneProfile(index) {
+      const p = profiles[index];
+      document.getElementById("phone-profile-img").src = p.img;
+      document.getElementById("phone-profile-name").textContent = p.name;
+      document.getElementById("phone-profile-loc").innerHTML = `<i data-lucide="map-pin" class="w-3.5 h-3.5 text-neonPink"></i> ${p.location}`;
+      document.getElementById("phone-status-badge").innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> ${p.status}`;
+      document.getElementById("phone-match-badge").textContent = p.match;
+      document.getElementById("phone-profile-bio").textContent = p.bio;
+      document.getElementById("phone-connect-cta").href = p.url;
+
+      const tagsContainer = document.getElementById("phone-profile-tags");
+      tagsContainer.innerHTML = p.tags
+        .map(tag => `<span class="px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md text-[10px] font-medium text-white border border-white/10">${tag}</span>`)
+        .join("");
+
+      lucide.createIcons();
+    }
+
+    function nextPhoneProfile() {
+      currentProfileIndex = (currentProfileIndex + 1) % profiles.length;
+      renderPhoneProfile(currentProfileIndex);
+    }
+
+    function filterPhoneProfiles(cat) {
+      // Update active button styling
+      document.querySelectorAll(".phone-filter-btn").forEach(btn => {
+        btn.classList.remove("bg-neonPink", "text-white", "shadow-[0_0_12px_rgba(255,0,127,0.6)]");
+        btn.classList.add("bg-white/10", "text-gray-300");
+      });
+      const activeBtn = document.getElementById(`phone-tab-${cat}`);
+      if (activeBtn) {
+        activeBtn.classList.remove("bg-white/10", "text-gray-300");
+        activeBtn.classList.add("bg-neonPink", "text-white", "shadow-[0_0_12px_rgba(255,0,127,0.6)]");
+      }
+
+      // Find matching profile
+      const foundIndex = profiles.findIndex(p => p.category === cat);
+      currentProfileIndex = foundIndex !== -1 ? foundIndex : 0;
+      renderPhoneProfile(currentProfileIndex);
+    }
+
+    // Trending Category Filter
+    function filterTrending(category) {
+      document.querySelectorAll(".trend-tab-btn").forEach(btn => {
+        if (btn.dataset.cat === category) {
+          btn.classList.remove("bg-white/[0.06]", "text-gray-300", "text-amber-300");
+          btn.classList.add("bg-neonPink", "text-white", "shadow-[0_0_15px_rgba(255,0,127,0.5)]");
         } else {
-          btn.className = "py-1 rounded-full text-slate-300 hover:text-white transition";
+          btn.classList.remove("bg-neonPink", "text-white", "shadow-[0_0_15px_rgba(255,0,127,0.5)]");
+          btn.classList.add("bg-white/[0.06]", btn.dataset.cat === "vip" ? "text-amber-300" : "text-gray-300");
+        }
+      });
+
+      document.querySelectorAll(".trend-card").forEach(card => {
+        if (category === "all" || card.dataset.category === category) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
         }
       });
     }
 
-    // Trending Filter
-    function filterTrending(cat) {
-      const cards = document.querySelectorAll('.trending-card');
-      cards.forEach(card => {
-        if (cat === 'all' || card.dataset.category === cat) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+    // Navbar Region Switcher
+    let isUSA = true;
+    function toggleNavRegion() {
+      isUSA = !isUSA;
+      document.getElementById("nav-region-flag").textContent = isUSA ? "🇺🇸" : "🌍";
+      document.getElementById("nav-region-label").textContent = isUSA ? "USA" : "Worldwide";
     }
 
-    // Search Redirect to Primary Smart Link
-    function handleSearchRedirect(e) {
-      e.preventDefault();
-      window.open("https://auctionr.org/4/45cc50822dc5899a4cf6b21d9e7fee79", "_blank", "noopener,noreferrer");
+    // Header Search Redirects to Primary Ad URL
+    function handleHeaderSearch() {
+      window.open(AD_URL_1, "_blank", "noopener,noreferrer");
     }
 
-    // Live Activity Social Proof Rotator
-    const liveFeed = [
-      { name: "Chloe from Texas, USA", sub: "Just started watching in 4K • Now", img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" },
-      { name: "Liam from New York, USA", sub: "Joined USA VIP Server • 12s ago", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80" },
-      { name: "Hannah from Toronto, Canada", sub: "Watching Oppenheimer HD • 28s ago", img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80" },
-      { name: "Noah from London, UK", sub: "Connected via Worldwide Hub • 45s ago", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=100&q=80" }
+    document.getElementById("header-search")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        handleHeaderSearch();
+      }
+    });
+
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+      const menu = document.getElementById("mobile-menu");
+      menu.classList.toggle("hidden");
+    }
+
+    // VIP Verification Modal Controls
+    function openVerifyModal(title) {
+      const modal = document.getElementById("vip-modal");
+      document.getElementById("modal-room-title").textContent = `Unlock ${title}`;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+    }
+
+    function closeVerifyModal() {
+      const modal = document.getElementById("vip-modal");
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+    }
+
+    // Dismissible Live Activity Toast + Rotating Messages
+    function dismissToast() {
+      const toast = document.getElementById("live-toast");
+      toast.style.opacity = "0";
+      toast.style.transform = "translateY(20px)";
+      setTimeout(() => toast.remove(), 400);
+    }
+
+    const toastMessages = [
+      "🔥 2,480 users from USA joined in the last hour — Claim Free Access",
+      "⚡ 1,940 Worldwide viewers just unlocked 4K VIP Live Rooms",
+      "🇺🇸 Fast-track USA server slots open — Instant Free Streaming"
     ];
     let toastIdx = 0;
     setInterval(() => {
-      const toast = document.getElementById('liveToast');
-      if (!toast || toast.style.display === 'none') return;
-      toastIdx = (toastIdx + 1) % liveFeed.length;
-      document.getElementById('toastText').textContent = liveFeed[toastIdx].name;
-      document.getElementById('toastSub').textContent = liveFeed[toastIdx].sub;
-      document.getElementById('toastAvatar').src = liveFeed[toastIdx].img;
-    }, 5500);
+      const msgEl = document.getElementById("toast-message");
+      if (msgEl) {
+        toastIdx = (toastIdx + 1) % toastMessages.length;
+        msgEl.textContent = toastMessages[toastIdx];
+      }
+    }, 6000);
+
+    // Subtle Floating Neon Particles Canvas
+    window.addEventListener("load", () => {
+      const canvas = document.getElementById("particle-canvas");
+      const ctx = canvas.getContext("2d");
+      let particles = [];
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resizeCanvas();
+      window.addEventListener("resize", resizeCanvas);
+
+      const colors = ["rgba(255, 0, 127, 0.45)", "rgba(138, 43, 226, 0.45)", "rgba(0, 240, 255, 0.35)"];
+      for (let i = 0; i < 36; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 2.2 + 0.8,
+          dx: (Math.random() - 0.5) * 0.35,
+          dy: -Math.random() * 0.45 - 0.15,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (const p of particles) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.fill();
+
+          p.x += p.dx;
+          p.y += p.dy;
+
+          if (p.y < -10) p.y = canvas.height + 10;
+          if (p.x < -10) p.x = canvas.width + 10;
+          if (p.x > canvas.width + 10) p.x = -10;
+        }
+        requestAnimationFrame(animateParticles);
+      }
+      animateParticles();
+    });
   </script>
 </body>
 </html>
-
-                                  
